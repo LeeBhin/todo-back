@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @Slf4j
 @RestController
 @RequestMapping("/api/todos")
+@CrossOrigin("*")
 public class TodoController {
 
     @Autowired
@@ -32,8 +34,10 @@ public class TodoController {
         return ResponseEntity.ok(todo);
     }
 
+    @CrossOrigin(origins = "http://localhost:5173")
     @PostMapping("/create")
     public Todo createTodo(@RequestBody Todo todo) {
+        log.info("create");
         return todoService.createTodo(todo);
     }
 
